@@ -1,0 +1,18 @@
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+
+param_distributions = {
+    'n_estimators': randint(50, 200),
+    'max_features': ['sqrt', 'log2'],
+    'max_depth': randint(5, 25)
+}
+
+random_search = RandomizedSearchCV(
+    estimator=model,
+    param_distributions=param_distributions,
+    n_iter=10,
+    cv=5,
+    scoring='accuracy',
+    random_state=42
+)
+# random_search.fit(X, y)
